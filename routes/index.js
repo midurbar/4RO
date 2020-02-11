@@ -8,35 +8,6 @@ const tablero = [
 var jugadores = 0;
 var turno = 1;
 
-/* Pantalla principal del juego. */
-router.get('/', function(req, res, next) {
-  const session = req.session;
-  if (!session.jugador) {
-    jugadores++;
-    if (jugadores > 2) {
-      res.status(403);
-    }
-    session.jugador = jugadores;
-  }
-  const meToca = (turno == session.jugador);
-  res.render('index', { title: 'Conecta cuatro', tablero, meToca });
-});
-
-router.post('/ponerficha', function(req, res, next) {
-  const {fila, columna} = req.body;
-  const jugador = req.session.jugador;
-  tablero[columna].push(jugador);
-
-  // Alternamos el turno
-  if (turno == 1) {
-    turno = 2;
-  } else {
-    turno = 1;
-  }
-
-  res.redirect("/");
-});
-
 function compLinea(a,b,c,d) {
   // Check first cell non-zero and all cells match
   return ((a != 0) && (a ==b) && (a == c) && (a == d));
@@ -83,6 +54,34 @@ function compGanador(tablero) {
   return 0;
 }
 
+/* Pantalla principal del juego. */
+router.get('/', function(req, res, next) {
+  const session = req.session;
+  if (!session.jugador) {
+    jugadores++;
+    if (jugadores > 2) {
+      res.status(403);
+    }
+    session.jugador = jugadores;
+  }
+  const meToca = (turno == session.jugador);
+  res.render('index', { title: 'Conecta cuatro', tablero, meToca });
+});
+
+router.post('/ponerficha', function(req, res, next) {
+  const {fila, columna} = req.body;
+  const jugador = req.session.jugador;
+  tablero[columna].push(jugador);
+
+  // Alternamos el turno
+  if (turno == 1) {
+    turno = 2;
+  } else {
+    turno = 1;
+  }
+
+  res.redirect("/");
+});
 
 router.get("/miturno", function(req, res, next) {
   const meToca = (turno == req.session.jugador);
@@ -91,6 +90,6 @@ router.get("/miturno", function(req, res, next) {
   } else {
     res.status(400).json(false); //fallo (si no me toca)
   }
-})
+});
 
 module.exports = router;
