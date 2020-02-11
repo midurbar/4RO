@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+
+
+    <table>
+      <tr>
+          <% for (var columna = 0; columna < 7; columna++) { %>
+            <th>
+            <% if (meToca) { %>
+            <form action="/ponerficha" method="post">
+              <input type="hidden" name="columna" value="<%= columna %>" >
+              <input type="submit" value="Jugar">
+            </form>
+            <% } %>
+            </th>
+          <% } %>
+      </tr>
+      <% for (var fila = 5; fila >= 0; fila--) { %>
+        <tr>
+        <% for (var columna = 0; columna < 7; columna++) { %>
+          <% if (tablero[columna][fila] == 1) { %>
+            <td>O</td>
+          <% } else if (tablero[columna][fila] == 2) { %>
+            <td>X</td>
+          <% } else { %>
+            <td>
+
+            </td> 
+          <% } %>
+        <% } %>
+      </tr>
+      <% } %>
+    </table>
+
+    <% if (!meToca) { %>
+      <script>
+        setInterval(function () {
+          fetch('/miturno').then(function(response) {
+            if (response.ok) {
+              location.reload();
+            }
+          })
+        }, 3000);
+      </script>
+    <% } %>
+  </body>
+</html>
