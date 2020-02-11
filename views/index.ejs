@@ -24,9 +24,15 @@
         <tr>
         <% for (var columna = 0; columna < 7; columna++) { %>
           <% if (tablero[columna][fila] == 1) { %>
-            <td>O</td>
+            <td>
+              <span class="red">
+              </span>
+            </td>
           <% } else if (tablero[columna][fila] == 2) { %>
-            <td>X</td>
+            <td>
+              <span class="green">
+              </span>
+            </td>
           <% } else { %>
             <td>
 

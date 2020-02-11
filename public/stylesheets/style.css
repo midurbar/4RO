@@ -14,3 +14,27 @@ td {
   font-size: 70px;
   text-align: center;
 }
+
+.red{
+  background-color:red;
+  display:block;
+  height:100px;
+  width:100px;
+  border-radius:50%;
+  margin:auto;
+  color:#fff;
+  text-align:center
+  
+}
+
+.green{
+  background-color:green;
+  display:block;
+  height:100px;
+  width:100px;
+  border-radius:50%;
+  margin:auto;
+  color:#fff;
+  text-align:center
+  
+}
