@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 
   if (ganador !=0) {
     res.render('winner',{ganador});
-  } else if (ganador=0 && lleno) {
+  } else if (ganador==0 && lleno) {
     res.render('tie',{ganador});
   } else {
     const meToca = (turno == session.jugador);
