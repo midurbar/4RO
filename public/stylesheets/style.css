@@ -15,8 +15,8 @@ td {
   text-align: center;
 }
 
-.red{
-  background-color:red;
+.blue{
+  background-color:yellow;
   display:block;
   height:100px;
   width:100px;
@@ -27,8 +27,8 @@ td {
   
 }
 
-.green{
-  background-color:green;
+.yellow{
+  background-color:violet;
   display:block;
   height:100px;
   width:100px;
