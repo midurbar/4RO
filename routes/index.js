@@ -22,9 +22,12 @@ router.get('/', function(req, res, next) {
   }
 
   const ganador=compGanador(tablero);
+  var lleno=tablero.every(columna => columna-length==6);
 
   if (ganador !=0) {
     res.render('winner',{ganador});
+  } else if (ganador=0 && lleno) {
+    res.render('tie',{ganador});
   } else {
     const meToca = (turno == session.jugador);
     res.render('index', { title: 'Conecta cuatro', tablero, meToca });
