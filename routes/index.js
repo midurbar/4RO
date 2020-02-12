@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
   }
 
   const ganador=compGanador(tablero);
-  var lleno=tablero.every(columna => columna-length==6);
+  var lleno=tablero.every(columna => columna.length==6);
 
   if (ganador !=0) {
     res.render('winner',{ganador});
