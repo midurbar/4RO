@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
   if (ganador !=0) {
     res.render('winner',{ganador});
   } else if (ganador==0 && lleno) {
-    res.render('tie',{ganador});
+    res.render('tie');
   } else {
     const meToca = (turno == session.jugador);
     res.render('index', { title: 'Conecta cuatro', tablero, meToca });
@@ -40,15 +40,12 @@ router.post('/ponerficha', function(req, res, next) {
   const jugador = req.session.jugador;
   tablero[columna].push(jugador);
 
-
   // Alternamos el turno
   if (turno == 1) {
     turno = 2;
   } else {
     turno = 1;
   }
-
-
 
   res.redirect("/");
 });
